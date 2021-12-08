@@ -20,18 +20,18 @@ rl.on('line', function (line) {
     let result = 'YES';
 
     for (let j = 0; j < input[i].length; j++) {
-      if (input[i][j] == '(') {
+      if (input[i][j] == '(') { // 인풋값이 '('일 경우 스택에 push한다.
         stack_list.push(input[i][j]);
-      } else {
+      } else { // 인풋값이 ')'이고 스택에 존재하는 값이 있을 경우 pop한다.
         if (stack_list.length !== 0) {
           stack_list.pop();
         } else {
-          result = 'NO';
+          result = 'NO'; // 인풋값이 ')'이나 스택에 존재하는 값이 없을 경우 'NO'를 출력
           break;
         }
       }
     }
-    if (stack_list.length !== 0) {
+    if (stack_list.length !== 0) { // for문이 끝난 뒤 스택에 남은 값이 있을 경우 짝이 맞지 않았다는 것을 의미하므로 'NO'출력
       result = 'NO';
     }
     console.log(result);
