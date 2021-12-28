@@ -26,8 +26,8 @@ rl.on('line', function (line) {
   // })
 
   //version.2
-  lines.shift()
-  lines.sort((a, b) => a - b).forEach((e) => console.log(+e))
+  lines.shift() // 입력값 배열의 첫번째는 정렬 해야 되는 값이 아니므로 빼낸다.
+  lines.sort((a, b) => a - b).forEach((e) => console.log(+e)) //나머지 값들을 정렬 후 차례로 출력한다.
 
   process.exit()
 })
