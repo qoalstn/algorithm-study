@@ -11,9 +11,9 @@ rl.on('line', function (line) {
 }).on('close', function () {
   tmp = [];
   lines.forEach((e) => {
-    tmp.push(e % 42);
+    tmp.push(e % 42); //입력값을 42로 나눈 나머지를 tmp에 담는다.
   });
-  const rs = new Set(tmp);
+  const rs = new Set(tmp); //중복 제거
   console.log([...rs].length);
   process.exit();
 });
