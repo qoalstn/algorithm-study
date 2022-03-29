@@ -1,27 +1,31 @@
 function solution(id_list, input_report, k) {
-  let answer = [];
-
   //중복제거
   const _report = new Set(input_report);
   const report = [..._report];
 
-  // k번 이상 신고당한 아이디
-  let tmp = {};
-  let outIds = [];
-  const rs = report.map((e) => e.split(' ')[1]);
-  rs.forEach((e) => {
-    tmp[e] = (tmp[e] || 0) + 1;
-    if (tmp[e] == k) outIds.push(e);
+  // 신고 당한 사람을 기준으로 빈 그룹 생성
+  let report_group = {};
+  id_list.map((user) => (report_group[user] = []));
+
+  // 생성한 그룹에 신고한 사람을 넣는다
+  report.forEach((users) => {
+    const [report_id, reported_id] = users.split(' ');
+    report_group[reported_id].push(report_id);
   });
 
-  let _answer = [];
-  for (let i = 0; i < id_list.length; i++) {
-    for (let j = 0; j < report.length; j++) {
-      _answer[i][0] = id_list[i];
-      _answer[i][1]; // 유저가 신고한 ID
-      _answer[i][2]; // 정지된 ID
+  // 기준 횟수를 초과한 사람의 그룹에 있는 신고자를 result 배열에 넣는다.
+  let result = [];
+  id_list.forEach((id) => {
+    if (report_group[id].length >= k) {
+      report_group[id].forEach((i) => result.push(i));
     }
-  }
+  });
+
+  // 메일을 받은 횟수를 객체에 담는다.
+  let count = {};
+  result.forEach((id) => (count[id] = (count[id] || 0) + 1));
+
+  const answer = id_list.map((user) => (count[user] ? count[user] : 0));
 
   return answer;
 }
