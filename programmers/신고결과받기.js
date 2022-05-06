@@ -25,6 +25,7 @@ function solution(id_list, input_report, k) {
   let count = {};
   result.forEach((id) => (count[id] = (count[id] || 0) + 1));
 
+  // id_list의 id를 메일 받은 횟수로 대체한다.
   const answer = id_list.map((user) => (count[user] ? count[user] : 0));
 
   return answer;
