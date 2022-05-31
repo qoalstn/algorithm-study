@@ -25,6 +25,10 @@ rl.on('line', function (line) {
     }
   }
   // console.log(clothes);
+  // [
+  //   [ { k1: 'v' }, { k1: 'v' }, { k2: 'v' } ],
+  //   [ { k4: 'v' }, { k5: 'v' }, { k5: 'v' } ]
+  // ]
 
   let answer = [];
 
@@ -35,6 +39,7 @@ rl.on('line', function (line) {
     }
 
     // console.log(1, keyArr);
+    // [ 'k1', 'k1', 'k2' ]
 
     let answerTmp = {};
     keyArr.forEach((e) => {
@@ -42,18 +47,19 @@ rl.on('line', function (line) {
     });
 
     // console.log(2, answerTmp);
+    // { k1: 2, k2: 1 }
 
     let result = 1;
     for (const key in answerTmp) {
       result *= answerTmp[key] + 1;
     }
-    answer.push(result - 1);
 
     // console.log(3, result);
+
+    answer.push(result - 1);
   }
 
   console.log(answer.join('\n'));
-  // console.log(answer.join('\n'));
 
   process.exit();
 });
